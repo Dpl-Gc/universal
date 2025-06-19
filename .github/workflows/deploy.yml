@@ -1,0 +1,33 @@
+name: Deploy Project Hugo Site to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # Запускаємо деплой при змінах у гілці 'main'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout your repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: 'latest'
+          extended: true
+
+      - name: Build site (production)
+        run: hugo --minify --baseURL "/universal/" # Важливо для проєктних сайтів!
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          publish_branch: gh-pages # ДЕПЛОЙ НА ГІЛКУ gh-pages для проєктних сайтів
