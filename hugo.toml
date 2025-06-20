@@ -5,6 +5,7 @@ baseURL = "https://dpl-gc.github.io/universal"
 
 title = "Сайт на темі Універсал"
 theme = "universal"
+
 # themesDir = "../.."
 languageCode = "en-us"
 # Site language. Available translations in the theme's `/i18n` directory.
@@ -19,7 +20,11 @@ pluralizelisttitles = false
 [services]
     # Enable comments by entering your Disqus shortname
     [services.disqus]
+<<<<<<< HEAD
         shortname = "devcows"
+=======
+        shortname = ""
+>>>>>>> bf7e430582a6de924da0353cf5c5200e5d1b704a
     # Enable Google Analytics by entering your tracking code
     [services.googleAnalytics]
         id = ""
